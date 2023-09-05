@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    container_name: app
+    build: 
+      context: ./docker/nestjs/
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    tty: true
+    volumes:
+      - ./:/app
+  db:
+    container_name: db
+    image: mysql:8.1
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=spreadsheet
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
