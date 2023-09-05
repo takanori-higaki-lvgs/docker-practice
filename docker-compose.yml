@@ -6,15 +6,15 @@ services:
       context: ./docker/nestjs/
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 3000:3000
     tty: true
     volumes:
-      - ./:/app
+      - ./app:/app
   db:
     container_name: db
     image: mysql:8.1
     ports:
-      - 3306:3306
+      - 3306
     environment:
       - MYSQL_DATABASE=spreadsheet
       - MYSQL_ROOT_PASSWORD=root_password
