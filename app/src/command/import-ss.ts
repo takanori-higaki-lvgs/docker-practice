@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './../app.module';
+import { AppModule } from '../app.module';
 
-async function importGoogleSpreadSheet() {
+async function importSpreadsheet() {
   const app = await NestFactory.createApplicationContext(AppModule);
   try {
     console.log('Hello Command!');
@@ -9,4 +9,4 @@ async function importGoogleSpreadSheet() {
     await app.close();
   }
 }
-importGoogleSpreadSheet();
+importSpreadsheet();
