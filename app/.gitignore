@@ -39,3 +39,6 @@ lerna-debug.log*
 
 # Google Service Account
 /service_account/*
+
+# OAuth
+/oauth/*
