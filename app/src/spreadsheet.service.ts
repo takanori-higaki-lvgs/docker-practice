@@ -3,9 +3,13 @@ import { ConfigService } from '@nestjs/config';
 import { SpreadsheetEnv } from './config/spreadsheet/spreadsheet.config';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
+import { UserService } from './user/user.service';
+import { User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class SpreadsheetService {
+  constructor(private readonly userService: UserService) {}
+
   async importSpreadsheet(): Promise<void> {
     await this.fetchSpreadsheetData();
     await this.saveSpreadsheetData();
@@ -27,5 +31,11 @@ export class SpreadsheetService {
     });
   }
 
-  private saveSpreadsheetData(): void {}
+  private async saveSpreadsheetData(): Promise<User> {
+    const userCreateInput: Prisma.UserCreateInput = {
+      name: 'test',
+      data: 'testdata',
+    };
+    return await this.userService.createUser(userCreateInput);
+  }
 }

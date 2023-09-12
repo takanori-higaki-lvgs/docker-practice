@@ -5,7 +5,7 @@ import { SpreadsheetService } from './../spreadsheet.service';
 async function importSpreadsheet() {
   const app = await NestFactory.createApplicationContext(AppModule);
   try {
-    const spreadsheetService = new SpreadsheetService();
+    const spreadsheetService = app.get(SpreadsheetService);
     await spreadsheetService.importSpreadsheet();
     console.log('Hello Command!');
   } finally {
